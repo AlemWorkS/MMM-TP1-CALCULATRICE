@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Ligne du haut (affichage, non éditable au clavier) -->
     <LinearLayout
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -22,13 +21,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="28sp"
+            android:textSize="26sp"
             android:textStyle="bold"
             android:ellipsize="end"
             android:singleLine="true"
-            android:padding="8dp"
-            android:gravity="end"
-            android:background="@android:color/transparent" />
+            android:padding="6dp"
+            android:gravity="end"/>
 
         <Button
             android:id="@+id/btnCopy"
@@ -37,48 +35,48 @@
             android:text="Copier"/>
     </LinearLayout>
 
-    <!-- Grille des boutons -->
     <GridLayout
         android:id="@+id/grid"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:columnCount="4"
-        android:rowCount="5"
+        android:columnCount="6"
+        android:rowCount="4"
         android:useDefaultMargins="true"
         app:layout_constraintTop_toBottomOf="@id/topBar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Ligne 1 -->
+        <!-- L1 -->
         <Button android:id="@+id/btnClear" android:text="AC"/>
         <Button android:id="@+id/btnDel"   android:text="⌫"/>
         <Button android:id="@+id/btnNegate" android:text="±"/>
         <Button android:id="@+id/btnMod"   android:text="%"/>
+        <Button android:id="@+id/btnDiv"   android:text="÷"/>
+        <Button android:id="@+id/btnMul"   android:text="×"/>
 
-        <!-- Ligne 2 -->
+        <!-- L2 -->
         <Button android:id="@+id/btn7" android:text="7"/>
         <Button android:id="@+id/btn8" android:text="8"/>
         <Button android:id="@+id/btn9" android:text="9"/>
-        <Button android:id="@+id/btnDiv" android:text="÷"/>
+        <Button android:id="@+id/btnMinus" android:text="−"/>
+        <Button android:id="@+id/btnPlus"  android:text="+"/>
+        <Button android:id="@+id/btnEquals" android:text="="/>
 
-        <!-- Ligne 3 -->
+        <!-- L3 -->
         <Button android:id="@+id/btn4" android:text="4"/>
         <Button android:id="@+id/btn5" android:text="5"/>
         <Button android:id="@+id/btn6" android:text="6"/>
-        <Button android:id="@+id/btnMul" android:text="×"/>
-
-        <!-- Ligne 4 -->
-        <Button android:id="@+id/btn1" android:text="1"/>
-        <Button android:id="@+id/btn2" android:text="2"/>
-        <Button android:id="@+id/btn3" android:text="3"/>
-        <Button android:id="@+id/btnMinus" android:text="−"/>
-
-        <!-- Ligne 5 -->
-        <Button android:id="@+id/btn0" android:text="0"/>
         <Button android:id="@+id/btnDot" android:text="."/>
-        <Button android:id="@+id/btnEquals" android:text="="/>
-        <Button android:id="@+id/btnPlus" android:text="+"/>
+        <Button android:id="@+id/btn0" android:text="0"/>
+        <Space  android:layout_width="0dp" android:layout_height="0dp"/>
 
+        <!-- L4 (optionnellement des espaces ou re-organisation) -->
+        <Space  android:layout_width="0dp" android:layout_height="0dp"/>
+        <Space  android:layout_width="0dp" android:layout_height="0dp"/>
+        <Space  android:layout_width="0dp" android:layout_height="0dp"/>
+        <Space  android:layout_width="0dp" android:layout_height="0dp"/>
+        <Space  android:layout_width="0dp" android:layout_height="0dp"/>
+        <Space  android:layout_width="0dp" android:layout_height="0dp"/>
     </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
