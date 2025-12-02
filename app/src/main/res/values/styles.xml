@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CalcBtn" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">20dp</item> <item name="android:background">@drawable/bg_button_rounded</item>
+    </style>
+
+    <style name="CalcBtn.Num">
+        <item name="backgroundTint">@color/btn_number</item>
+    </style>
+
+    <style name="CalcBtn.Op">
+        <item name="backgroundTint">@color/btn_operator</item>
+    </style>
+
+    <style name="CalcBtn.Func">
+        <item name="backgroundTint">@color/btn_function</item>
+    </style>
+    <style name="CalcBtn.Landscape" parent="CalcBtn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="CalcBtn.Landscape.Num">
+        <item name="backgroundTint">@color/btn_number</item>
+    </style>
+
+    <style name="CalcBtn.Landscape.Op">
+        <item name="backgroundTint">@color/btn_operator</item>
+    </style>
+
+    <style name="CalcBtn.Landscape.Func">
+        <item name="backgroundTint">@color/btn_function</item>
+    </style>
+</resources>
