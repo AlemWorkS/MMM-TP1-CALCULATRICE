@@ -9,7 +9,7 @@ import java.math.RoundingMode
 class CalculatorViewModel(private val state: SavedStateHandle) : ViewModel() {
 
     val display = MutableLiveData(state["display"] ?: "")
-    // On garde les nombres sous forme de String pour faciliter la saisie, mais on traitera en BigDecimal
+
     private var left = state.get<String>("left") ?: ""
     private var right = state.get<String>("right") ?: ""
     private var op = state.get<String>("op") ?: ""
@@ -22,7 +22,6 @@ class CalculatorViewModel(private val state: SavedStateHandle) : ViewModel() {
     }
 
     private fun rebuildDisplay() {
-        // Logique d'affichage simple : Gauche Op Droite
         val text = buildString {
             append(left)
             if (op.isNotEmpty()) {
@@ -35,7 +34,7 @@ class CalculatorViewModel(private val state: SavedStateHandle) : ViewModel() {
     }
 
     fun onDigit(c: Char) {
-        if (!c.isDigit() && c != '.') return // Autoriser le point si on veut, sinon juste digit
+        if (!c.isDigit() && c != '.') return
 
         if (op.isEmpty()) {
             left += c
@@ -48,13 +47,12 @@ class CalculatorViewModel(private val state: SavedStateHandle) : ViewModel() {
     fun onOperator(newOp: Char) {
         if (newOp !in charArrayOf('+','-','*','/','%')) return
         if (left.isEmpty() && display.value?.isNotEmpty() == true) {
-            // Cas bonus : continuer le calcul sur le résultat précédent si left est vide
             left = display.value!!
         }
         if (left.isEmpty()) return
 
         if (op.isNotEmpty() && right.isNotEmpty()) {
-            // Enchaînement d'opérations (ex: 5 + 5 + ... -> affiche 10 + ...) [cite: 23]
+            // Enchaînement d'opérations
             if (!evaluate()) return
         }
         op = newOp.toString()
@@ -63,15 +61,15 @@ class CalculatorViewModel(private val state: SavedStateHandle) : ViewModel() {
 
     fun onEquals() {
         if (op.isNotEmpty() && right.isNotEmpty()) {
-            evaluate() // [cite: 24]
+            evaluate()
         }
     }
 
     fun onNegate() {
-        // [cite: 25] Moins unaire sur le dernier nombre saisi
+        // Moins unaire sur le dernier nombre saisi
         fun toggleSign(s: String): String {
             if (s.isEmpty()) return s
-            // Gestion intelligente du signe
+            // Gestion du signe
             return if (s.startsWith("-")) s.removePrefix("-") else "-$s"
         }
 
@@ -84,7 +82,7 @@ class CalculatorViewModel(private val state: SavedStateHandle) : ViewModel() {
     }
 
     fun onDelete() {
-        // [cite: 26, 27, 28] Effacer dernier caractère
+
         when {
             right.isNotEmpty() -> right = right.dropLast(1)
             op.isNotEmpty() -> op = ""
@@ -94,7 +92,6 @@ class CalculatorViewModel(private val state: SavedStateHandle) : ViewModel() {
     }
 
     fun onReset() {
-        // [cite: 29] Tout effacer
         left = ""
         right = ""
         op = ""
@@ -103,7 +100,7 @@ class CalculatorViewModel(private val state: SavedStateHandle) : ViewModel() {
     }
 
     fun onDot() {
-        // Pour gérer les décimaux si tu le souhaites (ex: 5.5)
+        // Pour gérer les décimaux
         if (op.isEmpty()) {
             if (!left.contains(".")) left += "."
         } else {
@@ -136,8 +133,7 @@ class CalculatorViewModel(private val state: SavedStateHandle) : ViewModel() {
                 else -> return false
             }
 
-            // Formatage : si le résultat est entier (ex: 5.0), on enlève le .0, sinon on affiche normal
-            // stripTrailingZeros peut parfois laisser des notations scientifiques, toPlainString corrige ça
+
             left = res.toPlainString()
             right = ""
             op = ""
